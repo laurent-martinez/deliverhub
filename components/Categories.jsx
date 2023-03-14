@@ -1,10 +1,16 @@
 import {  Text, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CategoriesCard from './CategoriesCard'
+import { client, urlFor } from '../sanity'
 
 
 
 const Categories = () => {
+  const [categories, setCategories] = useState([])
+
+  useEffect(() => {
+    client.fetch(`*[_type == 'category']`).then(data => setCategories(data))
+  }, [])
   return (
     <ScrollView 
     horizontal
@@ -13,14 +19,16 @@ const Categories = () => {
       paddingHorizontal: 15,
       paddingTop: 10,
     }}>
-    <CategoriesCard imageUrl='https://cdn.midjourney.com/fa9f1efb-ab98-49ca-94f5-8388ab914a74/grid_0.png' title='testing 1'/>
-    <CategoriesCard imageUrl='https://cdn.midjourney.com/1d9c2ab8-4f2c-40b8-a68b-e8ca4ad8ef16/grid_0.png' title='testing 2'/>
-    <CategoriesCard imageUrl='https://cdn.midjourney.com/fa9f1efb-ab98-49ca-94f5-8388ab914a74/grid_0.png' title='testing 3'/>
-    <CategoriesCard imageUrl='https://cdn.midjourney.com/1d9c2ab8-4f2c-40b8-a68b-e8ca4ad8ef16/grid_0.png' title='testing 3'/>
-    <CategoriesCard imageUrl='https://cdn.midjourney.com/fa9f1efb-ab98-49ca-94f5-8388ab914a74/grid_0.png' title='testing 3'/>
-    <CategoriesCard imageUrl='https://cdn.midjourney.com/1d9c2ab8-4f2c-40b8-a68b-e8ca4ad8ef16/grid_0.png' title='testing 3'/>
-    <CategoriesCard imageUrl='https://cdn.midjourney.com/fa9f1efb-ab98-49ca-94f5-8388ab914a74/grid_0.png' title='testing 3'/>
-    <CategoriesCard imageUrl='https://cdn.midjourney.com/1d9c2ab8-4f2c-40b8-a68b-e8ca4ad8ef16/grid_0.png' title='testing 3'/>
+      {categories?.map(category => {
+        return (
+          <CategoriesCard
+          key={category._id}
+          imageUrl={urlFor(category.image).width(200).url()}
+          title={category.name}
+          />
+        )
+      })}
+  
     </ScrollView>
   )
 }

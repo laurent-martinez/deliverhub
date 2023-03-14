@@ -1,14 +1,15 @@
 import { Text, SafeAreaView, Image, View, TextInput, ScrollView} from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import logoTezuka from '../logoTezuka.png'
 import { AdjustmentsVerticalIcon, ChevronDownIcon, MagnifyingGlassIcon, ServerStackIcon, UserIcon } from 'react-native-heroicons/outline'
 import Categories from '../components/Categories'
 import FeaturedRow from '../components/FeaturedRow'
-
+import { client } from '../sanity'
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const [Featured, setFeatured] = useState([])
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -17,8 +18,26 @@ const HomeScreen = () => {
     return () => {
     };
   }, [])
+
+  useEffect( () => {
+    client.fetch(`*[_type == 'featured']{
+      ...,
+      restaurants[]->{
+        ...,
+        dishes[]->,
+        type-> {
+          name
+        }
+      },
+    }`).then((data) => {
+      setFeatured(data)
+    })
+}, [])
+
+  console.log(Featured)
+
   return (
-    <SafeAreaView className='bg-white pt-14'>
+    <SafeAreaView className='bg-white pt-14 pb-14 mb-14'>
         <View className='flex-row pb-3 mx-2 items-center justify-between space-x-2 px-2'>
           <Image   
           source={logoTezuka}
@@ -46,11 +65,15 @@ const HomeScreen = () => {
           {/* categories */}
           <Categories/>
           {/* Feature rows */}
-          <FeaturedRow
-          id='12'
-          title='featured'
-          description='paid placement from our partners'
-            />
+          {Featured?.map((item) => (
+            <FeaturedRow
+                      key={item._id}
+                        id={item._id}
+                      title={item.name}
+                      description=  {item.short_description}
+                        />
+          ))}
+{/*          
              <FeaturedRow
              id='123'
           title='Tasty discounts'
@@ -60,7 +83,7 @@ const HomeScreen = () => {
              id='1234'
           title='Offers near you!'
           description='Why not support your local businesses?'
-            />
+            /> */}
         </ScrollView>
     </SafeAreaView>
   )

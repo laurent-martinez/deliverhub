@@ -3,13 +3,14 @@
     "name": "deliverhub",
     "slug": "deliverhub",
     "version": "1.0.0",
+    "description": "DeliverHub is a mobile app that allows you to order food from your favorite restaurants and have it delivered to your door. from now it's just a prototype",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logoTezuka.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#5c7864"
     },
     "assetBundlePatterns": [
       "**/*"
