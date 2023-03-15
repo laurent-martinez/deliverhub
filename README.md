@@ -1,5 +1,7 @@
-IMPLEMENT DELIVERHUB APP :
+<h1>IMPLEMENT DELIVERHUB APP :</h1>
 
-1-- Download Expo go (android: Playstore, ios: appleStore).
-2-- Scan this QR code with expo go:
-<img src="./assets/expoGoLink.png" width="128"/>
+<p>1-- Download Expo go (android: Playstore, ios: appleStore).</p>
+<p>2-- Scan this QR code with expo go:</p>
+<img src="./assets/expoGoLink.png" width="300"/>
+
+
