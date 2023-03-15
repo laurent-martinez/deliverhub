@@ -10,6 +10,7 @@ import { client } from '../sanity'
 const HomeScreen = () => {
   const navigation = useNavigation();
   const [Featured, setFeatured] = useState([])
+  const [category, setCategory] = useState([])
 
   useLayoutEffect(() => {
     navigation.setOptions({

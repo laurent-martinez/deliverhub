@@ -9,6 +9,7 @@ import {store} from './store';
 import BasketScreen from './screens/BasketScreen';
 import PreparingOrderScreen from './screens/PreparingOrderScreen';
 import DeliveryScreen from './screens/DeliveryScreen';
+import RestaurantsScreen from './screens/RestaurantsScreen';
 
 
 
