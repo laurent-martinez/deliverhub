@@ -3,7 +3,7 @@
     "name": "deliverhub",
     "slug": "deliverhub",
     "version": "1.0.0",
-    "description": "DeliverHub is a mobile app that allows you to order food from your favorite restaurants and have it delivered to your door. from now it's just a prototype",
+    "description": "DeliverHub is a mobile app that allows you to order food from your favorite restaurants and have it delivered to your door. from now it's just a prototype. step -1- install expo go app on your phone. step -2- open expo go app and scan the QR code.",
     "orientation": "portrait",
     "icon": "./assets/logoTezuka.png",
     "userInterfaceStyle": "light",
